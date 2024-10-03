@@ -1,7 +1,7 @@
 
 # HitAndTank
 
-Hit and Tank is a simple javascript game meant to do absolutely nothing.
+Hit and Tank is a simple javascript with web functionality I made, the code is awful, I know.
 
 ## Badges
 
