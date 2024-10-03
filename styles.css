@@ -1,98 +1,85 @@
-/* styles.css */
+/* Import the Montserrat font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* style.css */
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0; /* light mode background */
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
 
 .container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
+.game-log-container {
+  flex: 2;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 10px;
 }
 
-header h1 {
-    margin: 0;
+.stats-container {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 10px;
 }
 
-#mode-toggle {
-    background-color: #666;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+.options-container {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 10px;
 }
 
-#mode-toggle:hover {
-    background-color: #444;
+button {
+  background-color: #0097a7;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
-main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+button:hover {
+  background-color: #00b8d9;
 }
 
-section {
-    flex-basis: 30%;
-    margin: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    margin-top: 0;
-}
-
-#log {
-    padding: 20px;
-}
-
-#player-mana, #player-health, #monster-health {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-/* Dark mode styles */
 .dark-mode {
-    background-color: #333;
-    color: #fff;
+  background-color: #333;
+  color: #ffffff;
 }
 
-.dark-mode .container {
-    background-color: #444;
-    border-color: #666;
+.dark-mode .game-log-container, .dark-mode .stats-container, .dark-mode .options-container {
+  background-color: #444;
+  color: #ffffff;
 }
 
-.dark-mode header {
-    background-color: #666;
+.dark-mode button {
+  background-color: #666;
+  color: #ffffff;
 }
 
-.dark-mode #mode-toggle {
-    background-color: #fff;
-    color: #333;
-}
-
-.dark-mode #mode-toggle:hover {
-    background-color: #ccc;
-}
-
-.dark-mode section {
-    background-color: #444;
-    border-color: #666;
+.dark-mode button:hover {
+  background-color: #777;
 }

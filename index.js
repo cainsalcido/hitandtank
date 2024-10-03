@@ -79,4 +79,12 @@ function gameMenu() {
   console.log('2. Slash');
   console.log('3. Run away');
   // Add more options as needed
+// Add an event listener to the "Run Away" button
+document.getElementById("run-away-btn").addEventListener("click", clearConsole);
+
+// Function to clear the console
+function clearConsole() {
+  console.clear();
+}
+
 }

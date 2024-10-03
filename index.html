@@ -1,39 +1,34 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monster Slayer Game</title>
+    <title>Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Monster Slayer Game</h1>
-            <button id="mode-toggle">Toggle Mode</button>
-        </header>
-        <main>
-            <section id="game-menu">
-                <h2>Game Menu</h2>
-                <button id="cast-spell">Cast a Spell</button>
-                <button id="slash">Slash</button>
-                <button id="run-away">Run Away</button>
-            </section>
-            <section id="game-log">
-                <h2>Game Log</h2>
-                <div id="log"></div>
-            </section>
-            <section id="player-stats">
-                <h2>Player Stats</h2>
-                <p id="player-mana"></p>
-                <p id="player-health"></p>
-            </section>
-            <section id="monster-stats">
-                <h2>Monster Stats</h2>
-                <p id="monster-health"></p>
-            </section>
-        </main>
+        <div class="game-log">
+            <h2>Game Log</h2>
+            <div id="log"></div>
+        </div>
+        <div class="options">
+            <h2>Options</h2>
+            <button id="cast-spell">Cast a Spell</button>
+            <button id="slash">Slash</button>
+            <button id="run-away">Run Away</button>
+            <button id="mode-toggle">Toggle Dark Mode</button>
+        </div>
+        <div class="stats">
+            <h2>Stats</h2>
+            <p id="player-mana">Mana: 100</p>
+            <p id="player-health">Health: 100</p>
+            <p id="monster-health">Monster Health: 100</p>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

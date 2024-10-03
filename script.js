@@ -26,7 +26,6 @@ function castSpell(manaCost, minDamage, maxDamage) {
         monsterAttack();
     } else {
         logMessage(`You don't have enough mana to cast a ${getSpellName(manaCost)}!`);
-        gameMenu();
     }
 }
 
@@ -55,7 +54,7 @@ function slash() {
 function monsterAttack() {
     let damage = getRandomInt(10, 20);
     player.health -= damage;
-    logMessage(`The Gooner attacked you for ${damage} damage!`);
+    logMessage(`The Gooner attacked you for ${damage} damage! `);
     logMessage(`Your health: ${player.health}`);
     checkWin();
 }
@@ -70,13 +69,6 @@ function checkWin() {
     } else if (player.health <= 0) {
         logMessage('You lost!');
     }
-}
-
-function gameMenu() {
-    logMessage('Game menu:');
-    logMessage('1. Cast a spell');
-    logMessage('2. Slash');
-    logMessage('3. Run away');
 }
 
 function logMessage(message) {
@@ -94,15 +86,24 @@ function updateMonsterStats() {
 
 document.getElementById('cast-spell').addEventListener('click', function() {
     castSpell(20, 10, 20);
+    updatePlayerStats();
+    updateMonsterStats();
 });
 
 document.getElementById('slash').addEventListener('click', function() {
     slash();
+    updatePlayerStats();
+    updateMonsterStats();
 });
 
 document.getElementById('run-away').addEventListener('click', function() {
     logMessage('You ran away!');
-    gameMenu();
+    gameLog.innerHTML = "";
+    player.mana = 100;
+    player.health = 100;
+    monster.health = 100;
+    updatePlayerStats();
+    updateMonsterStats();
 });
 
 document.getElementById('mode-toggle').addEventListener('click', function() {
