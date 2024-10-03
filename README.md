@@ -22,6 +22,7 @@ Hit and Tank is a simple javascript game meant to do absolutely nothing.
 - Cast a Spell (Mana Attack)
 - Slash (Physical Attack)
 - Run Away (buggy)
+- Functioning web interface
 
 
 ## Feedback
