@@ -1,0 +1,98 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* light mode background */
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+#mode-toggle {
+    background-color: #666;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#mode-toggle:hover {
+    background-color: #444;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+section {
+    flex-basis: 30%;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-top: 0;
+}
+
+#log {
+    padding: 20px;
+}
+
+#player-mana, #player-health, #monster-health {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+.dark-mode .container {
+    background-color: #444;
+    border-color: #666;
+}
+
+.dark-mode header {
+    background-color: #666;
+}
+
+.dark-mode #mode-toggle {
+    background-color: #fff;
+    color: #333;
+}
+
+.dark-mode #mode-toggle:hover {
+    background-color: #ccc;
+}
+
+.dark-mode section {
+    background-color: #444;
+    border-color: #666;
+}
