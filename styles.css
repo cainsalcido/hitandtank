@@ -1,85 +1,116 @@
 /* Import the Montserrat font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-/* style.css */
-
 body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #f7f7f7;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f0f0;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.game-log-container {
-  flex: 2;
-  padding: 20px;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin: 10px;
+.game-log {
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
 }
 
-.stats-container {
-  flex: 1;
-  padding: 20px;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin: 10px;
+.game-log h2 {
+    margin-top: 0;
 }
 
-.options-container {
-  flex: 1;
-  padding: 20px;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin: 10px;
+#log {
+    padding: 10px;
 }
 
-button {
-  background-color: #0097a7;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+.options {
+    padding: 20px;
 }
 
-button:hover {
-  background-color: #00b8d9;
+.options button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+}
+
+.options button:hover {
+    background-color: #3e8e41;
+}
+
+.stats {
+    padding: 20px;
+}
+
+.stats p {
+    margin-bottom: 10px;
+}
+
+#player-mana, #player-health, #monster-health {
+    font-weight: bold;
 }
 
 .dark-mode {
-  background-color: #333;
-  color: #ffffff;
+    background-color: #333;
+    color: #fff;
 }
 
-.dark-mode .game-log-container, .dark-mode .stats-container, .dark-mode .options-container {
-  background-color: #444;
-  color: #ffffff;
+.dark-mode .container {
+    background-color: #444;
+    border-color: #666;
 }
 
-.dark-mode button {
-  background-color: #666;
-  color: #ffffff;
+.dark-mode .game-log {
+    background-color: #555;
+    border-color: #777;
 }
 
-.dark-mode button:hover {
-  background-color: #777;
+.dark-mode .options button {
+    background-color: #666;
+    color: #fff;
+}
+
+.dark-mode .options button:hover {
+    background-color: #555;
+}
+
+#log {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#log p {
+  margin-bottom: 10px;
+}
+
+#log p.action {
+  font-weight: bold;
+  color: #00698f;
+}
+
+#log p.damage {
+  color: #ff0000;
+}
+
+#log p.mana {
+  color: #0000ff;
+}
+
+#log p.success {
+  color: #00ff00;
+}
+
+#log p.error {
+  color: #ff0000;
 }

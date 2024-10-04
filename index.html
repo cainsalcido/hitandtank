@@ -1,24 +1,25 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
+    <title>HitAndTank</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <div class="game-log">
             <h2>Game Log</h2>
-            <div id="log"></div>
+            <div id="log">
+                <p>Welcome to the game! You are a brave adventurer seeking fortune and glory.</p>
+                <p>A fearsome monster stands before you, its eyes fixed on you with a hungry gaze.</p>
+            </div>
         </div>
         <div class="options">
             <h2>Options</h2>
-            <button id="cast-spell">Cast a Spell</button>
-            <button id="slash">Slash</button>
-            <button id="run-away">Run Away</button>
+            <button id="cast-spell">Cast a Spell (Mana: 20)</button>
+            <button id="slash">Slash (Damage: 15)</button>
+            <button id="run-away">Run Away (Chance to escape: 50%)</button>
             <button id="mode-toggle">Toggle Dark Mode</button>
         </div>
         <div class="stats">
@@ -26,10 +27,12 @@
             <p id="player-mana">Mana: 100</p>
             <p id="player-health">Health: 100</p>
             <p id="monster-health">Monster Health: 100</p>
+            <p id="player-experience">Experience: 0</p>
+            <p id="player-level">Level: 1</p>
         </div>
     </div>
 
     <script src="src/script.js"></script>
-    <script src = "src/index.js"></script>
+    <script src="src/index.js"></script>
 </body>
 </html>
