@@ -1,114 +1,98 @@
-// script.js
+// Game logic
+let playerMana = 100;
+let playerHealth = 100;
+let monsterHealth = 100;
+let playerExperience = 0;
+let playerLevel = 1;
 
-let player = {
-    mana: 100,
-    health: 100
-};
-
-let monster = {
-    health: 100
-};
-
-let gameLog = document.getElementById('log');
-let playerManaElement = document.getElementById('player-mana');
-let playerHealthElement = document.getElementById('player-health');
-let monsterHealthElement = document.getElementById('monster-health');
-
-function castSpell(manaCost, minDamage, maxDamage) {
-    if (player.mana >= manaCost) {
-        let damage = getRandomInt(minDamage, maxDamage);
-        monster.health -= damage;
-        player.mana -= manaCost;
-        logMessage(`You cast a ${getSpellName(manaCost)} on the Gooner for ${damage} damage!`);
-        logMessage(`Monster health: ${monster.health}`);
-        logMessage(`Your mana: ${player.mana}`);
-        checkWin();
-        monsterAttack();
-    } else {
-        logMessage(`You don't have enough mana to cast a ${getSpellName(manaCost)}!`);
-    }
+// Update game log
+function updateLog(message, type = 'normal') {
+    const logElement = document.getElementById('log');
+    const newMessage = document.createElement('p');
+    newMessage.textContent = message;
+    newMessage.classList.add(type);
+    logElement.appendChild(newMessage);
 }
 
-function getSpellName(manaCost) {
-    switch (manaCost) {
-        case 20:
-            return 'spell';
-        case 30:
-            return 'fireball';
-        case 40:
-            return 'lightning bolt';
-        default:
-            return '';
-    }
-}
-
-function slash() {
-    let damage = getRandomInt(10, 25);
-    monster.health -= damage;
-    logMessage(`You slashed the Gooner for ${damage} damage!`);
-    logMessage(`Monster health: ${monster.health}`);
-    checkWin();
-    monsterAttack();
-}
-
-function monsterAttack() {
-    let damage = getRandomInt(10, 20);
-    player.health -= damage;
-    logMessage(`The Gooner attacked you for ${damage} damage! `);
-    logMessage(`Your health: ${player.health}`);
-    checkWin();
-}
-
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function checkWin() {
-    if (monster.health <= 0) {
-        logMessage('You won!');
-    } else if (player.health <= 0) {
-        logMessage('You lost!');
-    }
-}
-
-function logMessage(message) {
-    gameLog.innerHTML += `<p>${message}</p>`;
-}
-
+// Update player stats
 function updatePlayerStats() {
-    playerManaElement.textContent = `Mana: ${player.mana}`;
-    playerHealthElement.textContent = `Health: ${player.health}`;
+    document.getElementById('player-mana').textContent = `Mana: ${playerMana}`;
+    document.getElementById('player-health').textContent = `Health: ${playerHealth}`;
+    document.getElementById('player-experience').textContent = `Experience: ${playerExperience}`;
+    document.getElementById('player-level').textContent = `Level: ${playerLevel}`;
 }
 
-function updateMonsterStats() {
-    monsterHealthElement.textContent = `Health: ${monster.health}`;
+// Update monster health
+function updateMonsterHealth() {
+    document.getElementById('monster-health').textContent = `Monster Health: ${Math.max(monsterHealth, 0)}`;
 }
 
-document.getElementById('cast-spell').addEventListener('click', function() {
-    castSpell(20, 10, 20);
-    updatePlayerStats();
-    updateMonsterStats();
-});
+// Cast a spell
+function castSpell() {
+    if (playerMana >= 20) {
+        playerMana -= 20;
+        monsterHealth -= 30;
+        updateLog('You cast a spell, dealing damage to the monster!', 'action');
+        updateLog(`-30 Monster Health`, 'damage');
+        updateLog(`-20 Player Mana`, 'mana');
+        updatePlayerStats();
+        updateMonsterHealth();
+        checkMonsterHealth();
+    } else {
+        updateLog('You don\'t have enough mana to cast a spell!', 'error');
+    }
+}
 
-document.getElementById('slash').addEventListener('click', function() {
-    slash();
-    updatePlayerStats();
-    updateMonsterStats();
-});
+// Slash the monster
+function slash() {
+    monsterHealth -= 15;
+    updateLog('You slash the monster, dealing damage!', 'action');
+    updateLog(`-15 Monster Health`, 'damage');
+    updateMonsterHealth();
+    checkMonsterHealth();
+}
 
-document.getElementById('run-away').addEventListener('click', function() {
-    logMessage('You ran away!');
-    gameLog.innerHTML = "";
-    player.mana = 100;
-    player.health = 100;
-    monster.health = 100;
-    updatePlayerStats();
-    updateMonsterStats();
-});
+// Run away
+function runAway() {
+    const chanceToEscape = Math.random();
+    if (chanceToEscape < 0.5) {
+        updateLog('You successfully run away!', 'success');
+        // Reset game state
+        playerMana = 100;
+        playerHealth = 100;
+        monsterHealth = 100;
+        playerExperience = 0;
+        playerLevel = 1;
+        updatePlayerStats();
+        updateMonsterHealth();
+    } else {
+        updateLog('You fail to run away!', 'error');
+    }
+}
 
-document.getElementById('mode-toggle').addEventListener('click', function() {
-    document.body.classList.toggle('dark-mode');
-});
+// Check monster health
+function checkMonsterHealth() {
+    if (monsterHealth <= 0) {
+        updateLog('You defeated the monster!', 'success');
+        // Reset game state
+        playerMana = 100;
+        playerHealth = 100;
+        monsterHealth = 100;
+        playerExperience += 100;
+        playerLevel += 1;
+        updatePlayerStats();
+        updateMonsterHealth();
+    }
+}
 
-updatePlayerStats();
-updateMonsterStats();
+// Toggle dark mode
+function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+}
+
+// Add event listeners
+document.getElementById('cast-spell').addEventListener('click', castSpell);
+document.getElementById('slash').addEventListener('click', slash);
+document.getElementById('run-away').addEventListener('click', runAway);
+document.getElementById('mode-toggle').addEventListener('click', toggleDarkMode);

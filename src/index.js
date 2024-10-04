@@ -1,90 +1,59 @@
-// Initialize player and monster stats
-let player = {
-  mana: 100,
-  health: 100
-};
+// Import dependencies
+import { initGameState, updatePlayerStats, updateMonsterHealth, updateLog } from './gameLogic';
+import { renderGame, updateGameLog } from './ui';
+import { monsterAttack, monsterDefend } from './monster';
+import { usePotion, equipSword } from './items';
+import { levelUp, checkLevelUp } from './levels';
 
-let monster = {
-  health: 100
-};
+// Initialize the game
+function startGame() {
+  initGameState();
+  updateLog('Welcome to the game! You are a brave adventurer seeking fortune and glory.');
+  updateLog('A fearsome monster stands before you, its eyes fixed on you with a hungry gaze.');
+  renderGame(); // Render the initial game state
+}
 
-// Define a function to handle spell casting
-function castSpell(manaCost, minDamage, maxDamage) {
-  if (player.mana >= manaCost) {
-    let damage = getRandomInt(minDamage, maxDamage);
-    monster.health -= damage;
-    player.mana -= manaCost;
-    console.log(`You cast a ${getSpellName(manaCost)} on the Gooner for ${damage} damage!`);
-    console.log(`Monster health: ${monster.health}`);
-    console.log(`Your mana: ${player.mana}`);
-    checkWin();
-    monsterAttack();
-  } else {
-    console.log(`You don't have enough mana to cast a ${getSpellName(manaCost)}!`);
-    gameMenu();
+// Establish the game loop
+function gameLoop() {
+  // Update game state
+  updatePlayerStats();
+  updateMonsterHealth();
+
+  // Render the updated game state
+  renderGame();
+
+  // Handle user input (e.g., keyboard or mouse events)
+  document.addEventListener('keydown', (event) => {
+    if (event.key === ' ') {
+      // Player attacks the monster
+      monsterHealth -= 20;
+      updateLog('You attack the monster, dealing 20 damage!', 'damage');
+      updateMonsterHealth();
+    } else if (event.key === 'p') {
+      // Player uses a potion
+      usePotion();
+    } else if (event.key === 'e') {
+      // Player equips a sword
+      equipSword();
+    }
+  });
+
+  // Monster AI
+  if (monsterHealth > 0) {
+    if (Math.random() < 0.5) {
+      monsterAttack();
+    } else {
+      monsterDefend();
+    }
   }
+
+  // Check for level up
+  checkLevelUp();
+
+  // Repeat the game loop
+  requestAnimationFrame(gameLoop);
 }
 
-// Define a function to get the spell name based on mana cost
-function getSpellName(manaCost) {
-  switch (manaCost) {
-    case 20:
-      return 'spell';
-    case 30:
-      return 'fireball';
-    case 40:
-      return 'lightning bolt';
-    default:
-      return '';
-  }
-}
-
-// Define a function to handle melee attack
-function slash() {
-  let damage = getRandomInt(10, 25);
-  monster.health -= damage;
-  console.log(`You slashed the Gooner for ${damage} damage!`);
-  console.log(`Monster health: ${monster.health}`);
-  checkWin();
-  monsterAttack();
-}
-
-// Define a function to handle monster attack
-function monsterAttack() {
-  let damage = getRandomInt(10, 20);
-  player.health -= damage;
-  console.log(`The Gooner attacked you for ${damage} damage!`);
-  console.log(`Your health: ${player.health}`);
-  checkWin();
-}
-
-// Define a function to generate a random integer within a range
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// Define a function to check if the game is won
-function checkWin() {
-  if (monster.health <= 0) {
-    console.log('You won!');
-  } else if (player.health <= 0) {
-    console.log('You lost!');
-  }
-}
-
-// Define a function to display the game menu
-function gameMenu() {
-  console.log('Game menu:');
-  console.log('1. Cast a spell');
-  console.log('2. Slash');
-  console.log('3. Run away');
-  // Add more options as needed
-// Add an event listener to the "Run Away" button
-document.getElementById("run-away-btn").addEventListener("click", clearConsole);
-
-// Function to clear the console
-function clearConsole() {
-  console.clear();
-}
-
-}
+// Start the game and initialize the game loop
+startGame();
+gameLoop();
